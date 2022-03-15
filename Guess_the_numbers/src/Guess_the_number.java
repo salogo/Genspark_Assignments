@@ -7,32 +7,27 @@ public class  Guess_the_number {
         Scanner userInput = new Scanner(System.in);
 
         System.out.println("Hello! what is your name?");
-        String userName = userInput.nextLine();
+        userName = userInput.nextLine();
         System.out.println(" Well, " + userName + " I m thinking of a number between 1 and 20 take a guess.");
 
         int min = 1;
         int max = 20;
         Random random = new Random();
-        int value = random.nextInt(max + min) + min;
-        System.out.println(value);
+        value = random.nextInt(max + min) + min;
+        //System.out.println(value);
 
-        int attempt = 5;
-        byte guessingNumber;
+        int attempt = 6;
+        int guessingNumber;
         int i;
 
         for (i = 0; i < attempt; i++) {
-             guessingNumber = userInput.nextByte();
+            guessingNumber = getGuessingNumber(userInput);
 
-            if  (guessingNumber == value ) {
+            if (verify( guessingNumber )) {
                 System.out.println("Good job  " + userName + "You guessed my number in "+ i +" guess" );
                 break;
             }
-            else if (guessingNumber > value && i != attempt - 1) {
-                System.out.println("Your guess is higher, try again");
-            }
-            else if (guessingNumber < value && i != attempt - 1) {
-                System.out.println("Your guess is low try again");
-            }
+
 
 
         }
@@ -43,13 +38,39 @@ public class  Guess_the_number {
 
     }
 
+    public static String userName ;
+    public static int value;
+
+    public static boolean verify(int guessingNumber) {
+        if  (guessingNumber == value) {
+
+            return true;
+        }
+        else if (guessingNumber > value) {
+            System.out.println("Your guess is higher, try again");
+        }
+        else if (guessingNumber < value) {
+            System.out.println("Your guess is low try again");
+        }
+        return false;
+    }
+
+    public static int getGuessingNumber(Scanner userInput) {
+        try {
+            return userInput.nextInt();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+       return 0;
+    }
+
 
     // Driver Code
-    public static void
-    main(String arg[]) {
+    public static void main(String[] arg) {
         // Function Call
         guessingNumberGame();
     }
 
 
 }
+
