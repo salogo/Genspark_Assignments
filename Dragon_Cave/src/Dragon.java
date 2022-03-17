@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
 public class Dragon {
+    public static int entreNumber;
     public static void main(String[] args) {
+
         System.out.println("hello");
 
         Scanner input = new Scanner(System.in);
@@ -17,16 +19,17 @@ public class Dragon {
 
     }
     public static int getNumber(Scanner input) {
+
         try {
-            return input.nextInt();
+            int guess = input.nextInt();
+            return guess;//input.nextInt();
         }catch (Exception e){
-            e.printStackTrace();
-           // System.out.println( "NumberFormatException occurred" + e);
+           // e.printStackTrace();
+            System.out.println( "NumberFormatException occurred");
+         System.exit(0);
         }
         return 0;
     }
-
-    public static int entreNumber;
 
 
     public static boolean methodeToTest(int entreNumber) {
