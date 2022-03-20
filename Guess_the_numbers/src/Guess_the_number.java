@@ -19,7 +19,7 @@ public class  Guess_the_number {
         int attempt = 6;
         int guessingNumber;
         int i;
-
+        
         for (i = 0; i < attempt; i++) {
             guessingNumber = getGuessingNumber(userInput);
 
@@ -37,10 +37,10 @@ public class  Guess_the_number {
         }
 
     }
-
     public static String userName ;
     public static int value;
 
+    //method to verify if a user entered a correct number or no
     public static boolean verify(int guessingNumber) {
         if  (guessingNumber == value) {
 
@@ -54,7 +54,7 @@ public class  Guess_the_number {
         }
         return false;
     }
-
+   // catch Exception if a user enters a non-valid number
     public static int getGuessingNumber(Scanner userInput) {
         try {
             return userInput.nextInt();
