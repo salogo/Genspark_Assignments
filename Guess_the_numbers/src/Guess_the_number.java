@@ -19,7 +19,7 @@ public class  Guess_the_number {
         int attempt = 6;
         int guessingNumber;
         int i;
-        
+
         for (i = 0; i < attempt; i++) {
             guessingNumber = getGuessingNumber(userInput);
 
@@ -59,7 +59,9 @@ public class  Guess_the_number {
         try {
             return userInput.nextInt();
         }catch (Exception e){
-            e.printStackTrace();
+           // e.printStackTrace();
+            System.out.println( "NumberFormatException occurred");
+            System.exit(0);
         }
        return 0;
     }
