@@ -10,14 +10,17 @@ public class Dragon {
         System.out.println("You are in land full of Dragons!!!");
         System.out.println("Chose between the two caves: Cave 1  or Cave 2 ?!");
 
+       // condition while user did not enter a number the methode getNumber will never call boolean num will stay false
         boolean num = false;
        while (!num) {//
-           //int entreNumber = input.nextInt();
+           //creating user input
           entreNumber = getNumber(input);
            num = methodeToTest(entreNumber);
        }
 
     }
+
+    // Methods to get number from user and catch Exception if the user enters a nonvalid number or character
     public static int getNumber(Scanner input) {
 
         try {
@@ -31,7 +34,7 @@ public class Dragon {
         return 0;
     }
 
-
+   // This method will be called for testing
     public static boolean methodeToTest(int entreNumber) {
 
         if (entreNumber == 1) {
