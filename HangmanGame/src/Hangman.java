@@ -21,16 +21,16 @@ public class Hangman {
         String word = words.get(rand.nextInt(words.size()));
 
         System.out.println(word);
-        List<Character> userGuesses = new ArrayList<>();
+        List<Character> Guesses = new ArrayList<>();
 
-        printWordState(word, userGuesses);
+        printWordState(word, Guesses);
         System.out.println("Enter your letter!:");
 
     }
 
-    private static void printWordState(String word, List<Character> userGuesses) {
+    private static void printWordState(String word, List<Character> Guesses) {
         for (int i = 0; i < word.length(); i++){
-            if (userGuesses.contains(word.charAt(i))){
+            if (Guesses.contains(word.charAt(i))){
                 System.out.println(word.charAt(i));
             }
             else {
