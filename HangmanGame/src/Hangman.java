@@ -77,8 +77,15 @@ public class Hangman {
 
             System.out.println("Enter your letter!:");
             System.out.println(wrongCount);
-            letterGuess = keyboard.nextLine();
-            Guesses.add(letterGuess.charAt(0));
+            try {
+                letterGuess = keyboard.nextLine();
+                Guesses.add(letterGuess.charAt(0));
+            } catch (Exception e){
+                System.out.println( "NumberFormatException occurred");
+                System.exit(0);
+            }
+            //letterGuess = keyboard.nextLine();
+            //Guesses.add(letterGuess.charAt(0));
 
 
             if (!word.contains(letterGuess)) {
