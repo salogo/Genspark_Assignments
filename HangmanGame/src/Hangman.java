@@ -6,15 +6,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Hangman {
+   public static int wrongCount = 0;
+
     public static void main(String[] args) throws FileNotFoundException {
 
-        Scanner scanner = new Scanner(new File("/Users/zakariasalogo/Desktop/words.txt"));
+        Scanner scanner = new Scanner(new File("src/words.txt"));
         Scanner keyboard = new Scanner(System.in);
 
         List<String> words = new ArrayList<>();
 
         while (scanner.hasNext()) {
-            //System.out.println(scanner.nextLine());
             words.add(scanner.nextLine());
         }
         Random rand = new Random();
@@ -25,37 +26,74 @@ public class Hangman {
 
         List<Character> Guesses = new ArrayList<>();
 
-        while (true){
-            getPlayerGuesses(keyboard, word, Guesses);
+        printWordState(word, Guesses);
+
+        System.out.println("Please enter your guess");
+
+        getPlayerGuesses(keyboard,word, Guesses);
+
+    }
+
+    public static void displayDrawing(int count){
+        System.out.println("-------");
+        System.out.println(" +---+");
+        System.out.println("|       |");
+
+            if (count >=1 ){
+                System.out.println("0       |");
+            }
+            if (count >= 2 ){
+                System.out.println("|       |");
+                if (count >=3){
+                    System.out.println("|       |");
+                }
+                else {
+                    System.out.println("");
+                }
+            }
+
+            if (count >=4){
+                System.out.println("        |");
+            }
+
+            if (count >= 5 ){
+               // System.out.print("");
+                if (count >= 6){
+                   // System.out.println("");
+                }
+                else {
+                    System.out.println("");
+                }
+            }
+
+        }
+
+    private static boolean getPlayerGuesses(Scanner keyboard, String word, List<Character> Guesses) {
+        int numberGuess = 6;
+        String letterGuess = "";
+        while (numberGuess > 0){
+            displayDrawing(wrongCount);
+            printWordState(word, Guesses);
+
+            System.out.println("Enter your letter!:");
+            System.out.println(wrongCount);
+            letterGuess = keyboard.nextLine();
+            Guesses.add(letterGuess.charAt(0));
+
+
+            if (!word.contains(letterGuess)) {
+                wrongCount++;
+            }
+
             if (printWordState(word, Guesses) ){
                 System.out.println("You win");
                 break;
             }
 
-            System.out.println("Please enter your guess");
-            if (keyboard.nextLine().equals(word)){
-                System.out.println("You win");
-                break;
-            }
-            else {
-                System.out.println("please try again");
-            }
+            numberGuess--;
+
         }
-        //System.out.println("You win");
-
-
-    }
-
-    private static void getPlayerGuesses(Scanner keyboard, String word, List<Character> Guesses) {
-        int numberGuess = 6;
-        while (numberGuess > 0){
-          printWordState(word, Guesses);
-
-          System.out.println("Enter your letter!:");
-          String letterGuess = keyboard.nextLine();
-          Guesses.add(letterGuess.charAt(0));
-          numberGuess--;
-      }
+        return word.contains(letterGuess);
     }
 
 
@@ -73,10 +111,7 @@ public class Hangman {
         System.out.println();
 
         return (word.length() == correctCount);
-
-
-
-
-
     }
+
+
 }
