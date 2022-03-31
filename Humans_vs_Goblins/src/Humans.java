@@ -1,4 +1,3 @@
-
 public class Humans {
     private int strength;
     private int health;
@@ -32,14 +31,11 @@ public class Humans {
     //Overriding to String Humans methode
     @Override
     public String toString(){
-        return "Constructor(" +
-                "health=" + health +
-                ", strength=" + strength +
-                ')' ;
+        return "H";
     }
     // Humans methode
     public String attack(Goblins goblins){
-
+     setHealth(getHealth() + 2);
 
         goblins.setHealth(goblins.getHealth() - strength);
 
@@ -51,11 +47,8 @@ public class Humans {
 
     }
 
-
     public static void main(String[] args) {
     }
-
-
 
 }
 
