@@ -1,12 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Hangman_functional {
     public static int wrongCount = 0;
+    public static List<Character> Guesses = new ArrayList<>();
+    public static    int correctCount = 0;
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -24,7 +23,7 @@ public class Hangman_functional {
 
         System.out.println(word);
 
-        List<Character> Guesses = new ArrayList<>();
+       // List<Character> Guesses = new ArrayList<>();
 
         printWordState(word, Guesses);
 
@@ -35,17 +34,18 @@ public class Hangman_functional {
     }
 
     public static void displayDrawing(int count){
-        System.out.println("-------");
-        System.out.println(" +---+");
+        System.out.println("---------");
         System.out.println("|       |");
 
         if (count >=1 ){
-            System.out.println("0       |");
+            System.out.println(" 0");
         }
         if (count >= 2 ){
-            System.out.println("|       |");
+            System.out.print("\\ ");
+
             if (count >=3){
-                System.out.println("|       |");
+
+                System.out.println("/");
             }
             else {
                 System.out.println("");
@@ -53,13 +53,13 @@ public class Hangman_functional {
         }
 
         if (count >=4){
-            System.out.println("        |");
+            System.out.println(" |");
         }
 
         if (count >= 5 ){
-            // System.out.print("");
+             System.out.print("/ ");
             if (count >= 6){
-                // System.out.println("");
+                 System.out.println("\\");
             }
             else {
                 System.out.println("");
@@ -67,9 +67,9 @@ public class Hangman_functional {
         }
 
     }
-//###################################################################################################
+
     private static boolean getPlayerGuesses(Scanner keyboard, String word, List<Character> Guesses) {
-        int numberGuess = 6;
+        int numberGuess = 7;
         String letterGuess = "";
         while (numberGuess > 0){
             displayDrawing(wrongCount);
@@ -100,25 +100,33 @@ public class Hangman_functional {
         return word.contains(letterGuess);
     }
 
-
+    //###################################################################################################
     private static boolean printWordState(String word, List<Character> Guesses) {
-        int correctCount = 0;
-        // The functional methods will place here
-
+        // using a stream instead of a loop
+        String [] wordArray = word.split("");
+        Arrays.stream(wordArray).forEach(ch ->  checkLetter(ch, word));
         System.out.println();
-
         return (word.length() == correctCount);
     }
 
+    private static void checkLetter(String letter, String word){
+
+        if (   Guesses.contains(letter)   ){
+
+            correctCount++;
+        }
+        else {
+            System.out.print("-");
+        }
+
+
+    }
+
+    //###################################################################################################
 
 }
 
-/*for (int i = 0; i < word.length(); i++) {
-        if (Guesses.contains(word.charAt(i))) {
-        System.out.print(word.charAt(i));
-        correctCount++;
-        }
-        else {
-        System.out.print("-");
-        }
-        }*/
+
+
+
+
